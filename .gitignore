@@ -39,3 +39,15 @@ tmp/
 temp/
 
 projects/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.m4v
+*.wmv
+*.flv
+*.mpg
+*.mpeg
+*.3gp
+*.m2ts
