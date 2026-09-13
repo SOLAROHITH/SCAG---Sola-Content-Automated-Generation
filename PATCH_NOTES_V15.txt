@@ -1,0 +1,10 @@
+SCAG V15 — TRUE 9:16 GAMEPLAY CROP + FACEcam OVERLAY
+
+1. Replaced the old stacked "camera top / gameplay bottom" composition.
+2. Shorts now use a true 9:16 gameplay crop from the 16:9 source.
+3. Default crop is x=430, width=608, y=0 for the supplied 1920x1080 stream layout.
+   This removes the baked-in lower-left facecam from the gameplay layer.
+4. The original facecam region is extracted separately and overlaid at the bottom-left.
+5. Qwen can return crop_focus=left/center/right to shift the gameplay crop per clip.
+6. Fixed the long-form renderer's stale undefined filter references.
+7. Source video is not re-encoded during ingestion; output bitrate settings remain unchanged.

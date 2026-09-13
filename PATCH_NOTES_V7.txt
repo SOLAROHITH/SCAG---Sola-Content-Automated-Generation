@@ -1,0 +1,25 @@
+SCAG V7 — Automated YouTube pipeline fix
+
+The automated pipeline was accidentally overwriting the original YouTube URL
+with the project's `source/` directory before checking the input type.
+
+That caused:
+    ffprobe ...\projects\<timestamp>\source
+and Windows returned:
+    Permission denied
+
+V7 keeps:
+    source_input = original URL/local file
+    source_dir   = project/source/
+    video        = actual downloaded/local MP4
+
+V7 also explicitly passes:
+    transcription.audio_stream
+    transcription.audio_channel
+
+and forces fresh ASR audio/transcription for every automated run.
+
+The V6 audio-auto and animated-caption improvements remain included.
+
+Test:
+    python run_pipeline.py "https://www.youtube.com/watch?v=kzkg0qWwJw8"

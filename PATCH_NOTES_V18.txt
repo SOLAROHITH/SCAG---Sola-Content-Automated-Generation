@@ -1,0 +1,10 @@
+SCAG V18 - Unlimited Candidate Shorts + All-Candidate Longform
+
+1. render_top=0 now means UNLIMITED: every eligible identified candidate is rendered as a Short.
+2. Qwen's explicit editorial clips remain preferred.
+3. If Qwen-VL returns too few clips, the text-stage shortlist is promoted without a hidden 30-clip cap.
+4. Final safety fallback fills any remaining candidate IDs so no broad candidate silently disappears when render_top=0.
+5. Overlap de-duplication is disabled for render_top=0 because the requested contract is one Short per candidate.
+6. qwen_text_shortlist is set to 80 so the complete candidate index is considered.
+7. Long-form max_clips=0 includes every generated candidate/Short in chronological order.
+8. Existing Qwen3-ASR CUDA pipeline, facecam crop, captions, NVENC rendering, and 16:9 long-form renderer are preserved.

@@ -1,0 +1,20 @@
+SCAG V8 — Staged Qwen/Ollama vision pass
+
+The V7 automated pipeline successfully downloaded the 13-minute VOD, extracted audio, transcribed the entire stream, generated 11 candidates and extracted visual evidence.
+
+The failure was at the Qwen editorial request because the old implementation sent the COMPLETE transcript plus up to 132 images (20 candidates x 6 frames, then capped at candidate_frames*12). That is unnecessarily expensive for Ollama/Qwen and caused the 900-second HTTP read timeout.
+
+V8 changes Qwen to two stages:
+1. Text-only ranking: full timestamped transcript + candidate list.
+2. Vision verification: only the top 8 candidates, 2 frames each by default.
+
+This preserves the intended architecture: Qwen sees the whole stream transcript first, then uses visual evidence to verify the strongest moments. It also makes caption_focus explicitly require exact transcript wording.
+
+New config knobs:
+  analysis.qwen_text_shortlist: 8
+  analysis.qwen_vision_frames_per_candidate: 2
+  analysis.qwen_text_timeout_seconds: 900
+  analysis.qwen_vision_timeout_seconds: 1200
+
+Test:
+  python run_pipeline.py "https://www.youtube.com/watch?v=kzkg0qWwJw8"

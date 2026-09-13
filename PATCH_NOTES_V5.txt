@@ -1,0 +1,37 @@
+SCAG v5 patch notes
+
+1. Fixed caption source audio
+
+The previous manual transcriber extracted the first audio stream. Outplayed
+normally stores game/system audio on stream 0 and microphone audio on stream 1,
+so captions could describe game/announcer audio instead of what the creator
+actually said.
+
+Fix:
+- `transcription.audio_stream: auto`
+- when multiple audio streams exist, SCAG selects stream 1 for Whisper;
+- when only one audio stream exists, SCAG falls back to stream 0;
+- manual transcription is forced fresh so old cached transcripts cannot mask
+  the fix.
+
+2. Improved animated captions
+
+- cleaner 1–2 line grouping;
+- pause/punctuation-aware caption beats;
+- configurable word/character limits;
+- larger social-style font;
+- active word colour highlight;
+- active word scale pop animation;
+- configurable font, colours, outline, shadow, pop scale and placement;
+- reduced pop scale to avoid neighbouring words touching.
+
+3. Improved exported audio
+
+For multi-track Outplayed recordings, the final Short mixes audio streams 0
+(game/system) and 1 (microphone) into one AAC stereo track. Single-track
+recordings continue to work normally.
+
+4. Duration fix retained
+
+The finite background canvas, explicit `-t`, and `-shortest` safeguards from v4
+remain in place, preventing the previous hours-long frozen-frame export bug.

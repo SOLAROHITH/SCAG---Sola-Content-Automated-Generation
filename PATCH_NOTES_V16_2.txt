@@ -1,0 +1,7 @@
+V16.2 FACE CAM FIX
+- Corrected baked-in facecam source rectangle for the provided 1920x1080 stream layout.
+- Facecam defaults to x=0, y=410, width=230, height=250.
+- Facecam is now FIT inside the top 1/3 panel with aspect ratio preserved; it is never cropped to fill.
+- Added a blurred camera background behind the fitted camera so the entire facecam remains visible.
+- Facecam coordinates and fit/background behavior are configurable in config.yaml.
+- Gameplay remains centered in the bottom 2/3.

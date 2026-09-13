@@ -1,0 +1,110 @@
+youtube_auto_captions:
+  enabled: true
+  language: en
+  fallback_to_qwen3_asr: true
+
+source:
+  width: 1920
+  height: 1080
+  facecam:
+    x: 0
+    y: 409
+    width: 524
+    height: 296
+    output_mode: fit
+    position: center
+    padding: 0
+storage:
+  root: projects
+output:
+  width: 1080
+  height: 1920
+  fps: 30
+  video_bitrate: 12M
+  audio_bitrate: 192k
+  mix_game_and_mic: true
+branding:
+  text: yt/twitch:solarohith
+  font_size: 34
+  margin_bottom: 34
+templates:
+  gameplay:
+    composition: top_camera_bottom_gameplay
+    camera_height: 640
+    gameplay_height: 1280
+    gameplay_crop_focus: center
+    facecam_top: true
+    facecam_padding: 0
+    facecam_fit: true
+    facecam_background: blurred
+transcription:
+  model: large-v3
+  device: cuda
+  compute_type: float16
+  language: auto
+  audio_stream: auto
+  audio_channel: auto
+  initial_prompt: Gaming livestream conversation. The speaker may discuss Marvel Rivals,
+    gameplay, teammates, opponents and reactions.
+  beam_size: 5
+  best_of: 5
+  temperature: 0.0
+  condition_on_previous_text: false
+  compression_ratio_threshold: 2.4
+  log_prob_threshold: -1.0
+  no_speech_threshold: 0.6
+  chunk_seconds: 180
+  backend: qwen3-asr
+  qwen_model: Qwen/Qwen3-ASR-1.7B
+  qwen_forced_aligner: Qwen/Qwen3-ForcedAligner-0.6B
+  qwen_device: cuda:0
+  qwen_dtype: float16
+  qwen_batch_size: 1
+  qwen_max_new_tokens: 4096
+  qwen_timestamps: true
+ai:
+  base_url: http://127.0.0.1:11434/v1
+  api_key: ollama
+  model: qwen3-vl:8b-instruct
+  timeout_seconds: 1200
+  temperature: 0.1
+analysis:
+  vision_scan_seconds: 30
+  candidate_context_before: 20
+  candidate_context_after: 40
+  candidate_frames: 6
+  # Analyze the full broad candidate index
+  qwen_text_shortlist: 80
+  qwen_candidate_review_limit: 80
+  qwen_vision_frames_per_candidate: 1
+  qwen_text_timeout_seconds: 900
+  qwen_vision_timeout_seconds: 1200
+  max_candidates: 80
+  # 0 = render every identified candidate as a Short
+  render_top: 0
+  default_context_before: 10
+  default_context_after: 10
+  candidate_min_score: 65
+longform:
+  enabled: true
+  # 0 = include every generated Short/candidate in the long-form reel
+  max_clips: 0
+  width: 1920
+  height: 1080
+  captions: false
+captions:
+  enabled: true
+  font: Arial
+  font_size: 76
+  highlight_color: '&H00FF66CC'
+  normal_color: '&H00FFFFFF'
+  outline_color: '&H00000000'
+  outline_width: 6
+  shadow: 3
+  pop_scale: 110
+  margin_bottom: 470
+  style: social_pop
+  pop_ms: 110
+  max_words: 6
+  max_chars: 28
+  max_line_chars: 18

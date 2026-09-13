@@ -1,0 +1,9 @@
+SCAG V13 — LARGE LOCAL VIDEO / DASHBOARD UPLOAD FIX
+
+1. Streamlit upload limit increased from the default 200 MB to 10 GB.
+2. Added .streamlit/config.toml with maxUploadSize=10240 MB.
+3. Added optional LOCAL VIDEO PATH input for multi-GB streams.
+4. Local path is preferred, avoiding a browser upload/copy of 3–6 GB VODs.
+5. Browser uploads are written to disk in 8 MB chunks rather than one giant getbuffer() copy.
+6. Existing full-transcript + broad-candidate + Qwen editorial architecture is unchanged.
+7. Original source quality/download settings are unchanged.

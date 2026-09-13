@@ -1,0 +1,5 @@
+V16.3 DURATION N/A FIX
+- Fixed ffprobe_duration() crashing on files whose container duration is reported as N/A.
+- Duration lookup now checks container and stream duration metadata.
+- Added an ffmpeg Duration-line fallback for unusual/remuxed recordings.
+- Applies to both Automatic and Manual pipelines because both use the shared utility.

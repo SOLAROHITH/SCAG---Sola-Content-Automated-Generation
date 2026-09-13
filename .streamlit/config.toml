@@ -1,0 +1,6 @@
+[server]
+maxUploadSize = 10240
+maxMessageSize = 10240
+
+[client]
+showErrorDetails = "full"

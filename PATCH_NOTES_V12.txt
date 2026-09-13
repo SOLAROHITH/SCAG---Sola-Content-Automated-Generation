@@ -1,0 +1,14 @@
+SCAG V12 — FULL-STREAM EDITORIAL FIX
+
+- The complete timestamped transcript remains the master reference and is sent to both Qwen editorial stages.
+- Stage 1 now reviews the full candidate index instead of only the old top-8 heuristic candidates.
+- Candidate metadata is compacted so repeated transcript_context is not duplicated 80 times.
+- Stage 1 shortlist increased to 24 by default and is temporally diversified.
+- Stage 2 receives a temporally diverse shortlist and visual evidence, with explicit instruction to return multiple strong non-overlapping clips.
+- Defensive deduplication prevents overlapping/duplicate final clips.
+- Whisper transcription language is now AUTO by default rather than hard-coded English.
+- Streamlit model selection now actually overrides the configured Ollama model.
+- Streamlit output location is now honored under a per-run project folder.
+- Streamlit download log is compacted to avoid flooding the UI with repeated yt-dlp lines.
+
+Important: This does NOT reduce source quality. The downloaded source remains the original selected stream and the final render settings remain unchanged.

@@ -1,0 +1,14 @@
+SCAG V16.4 - Frame Extraction Fix
+
+Fixed a Windows FFmpeg failure during candidate visual evidence extraction:
+
+- Replaced JPEG/MJPEG frame extraction with PNG output.
+- Added RGB conversion and 1280px evidence-frame scaling.
+- Added a decode-friendly seek fallback (-i before -ss) for difficult H.264 files.
+- A single failed frame no longer aborts the entire pipeline; SCAG logs a warning and continues with available evidence.
+- Qwen vision still receives normal image data URLs; PNG MIME type is detected automatically by qwen.py.
+
+The error this addresses was:
+  ff_frame_thread_encoder_init failed
+  Could not open encoder before EOF
+  Error opening encoder ... mjpeg

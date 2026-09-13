@@ -1,0 +1,19 @@
+SCAG v4 patch notes
+
+Fixed the runaway-duration Short render bug.
+
+Root cause:
+The gameplay Short filter graph used an infinite FFmpeg `color` source for the
+1080x1920 background canvas. When the finite source video ended, the generated
+canvas could keep the filter graph alive, producing a frozen last frame for
+hours.
+
+Fixes:
+- Background canvas is now created with the exact requested clip duration.
+- Final FFmpeg output is explicitly bounded with `-t <clip duration>`.
+- `-shortest` is enabled as a final safety guard.
+- Manual renders now map the first audio track (`0:a:0?`) instead of all audio
+  tracks, which is cleaner for Outplayed recordings.
+
+This keeps the existing 1920x1080 -> 1080x1920 composition and animated ASS
+captions unchanged.

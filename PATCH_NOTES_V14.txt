@@ -1,0 +1,14 @@
+SCAG V14 — RESUMABLE TRANSCRIPTION + LIVE CONSOLE LOGS
+
+1. Entire-stream Whisper transcription is now executed in 5-minute chunks.
+2. Absolute timestamps are restored, so the final transcript remains one complete
+   timestamped stream transcript.
+3. Each completed chunk is checkpointed under work/transcript_chunks/.
+4. work/transcript_partial.json is updated after every completed chunk.
+5. If a run is interrupted, completed chunks are reused on the next run.
+6. Streamlit now shows transcription chunk progress instead of sitting on "Preparing...".
+7. Streamlit mirrors child-process logs to the VS Code/PowerShell console in real time.
+8. PYTHONUNBUFFERED is enabled for the child process so logs are not held in buffers.
+9. The full transcript is still passed to Qwen. Candidate discovery/editorial architecture
+   is unchanged.
+10. Source video quality/download settings are unchanged.

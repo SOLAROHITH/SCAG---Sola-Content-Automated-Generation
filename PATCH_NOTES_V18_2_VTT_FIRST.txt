@@ -1,0 +1,10 @@
+SCAG V18.2 - VTT-FIRST TRANSCRIPTION
+
+- Streamlit accepts an optional uploaded .vtt transcript.
+- Streamlit accepts an optional local VTT path.
+- Supplied VTT has highest priority.
+- YouTube URLs automatically try English YouTube captions before ASR.
+- VTT timestamps are converted into transcript.json, including word timestamps when available.
+- Qwen3-ASR runs only when no supplied/YouTube VTT is available.
+- Existing candidate/Qwen/render pipeline remains compatible with the same transcript format.
+- Existing VS Code console logging behavior is preserved.

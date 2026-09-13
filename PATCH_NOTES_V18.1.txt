@@ -1,0 +1,1 @@
+V18.1: YouTube URLs use English auto-generated VTT captions first; word timestamps preserved; Qwen3-ASR fallback. V18 unlimited Shorts and all-candidate 16:9 longform retained.

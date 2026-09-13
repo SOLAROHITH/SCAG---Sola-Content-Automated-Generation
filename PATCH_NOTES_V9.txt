@@ -1,0 +1,27 @@
+SCAG V9 — Local Qwen3-VL vision architecture
+
+V9 switches the default local editorial model from qwen3.6:latest to
+qwen3-vl:8b-instruct. This is a local vision-language model available through
+Ollama. The 8B Q4_K_M build is about 6.1 GB and is a practical fit for a
+16 GB GPU.
+
+Architecture:
+  1. Full-stream Whisper transcript
+  2. Broad candidate generation
+  3. Whole-stream visual sampling
+  4. Qwen3-VL text-only shortlist using the COMPLETE transcript
+  5. Qwen3-VL visual verification using only shortlisted candidates
+  6. Final timestamps + context padding
+  7. Animated captions
+  8. NVENC rendering
+
+Install/update Ollama as needed, then run:
+
+  ollama pull qwen3-vl:8b-instruct
+  ollama run qwen3-vl:8b-instruct
+
+Keep Ollama running, open another PowerShell in the SCAG venv, and run:
+
+  python run_pipeline.py "https://www.youtube.com/watch?v=kzkg0qWwJw8"
+
+Ollama's Qwen3-VL models require Ollama 0.12.7 or newer.

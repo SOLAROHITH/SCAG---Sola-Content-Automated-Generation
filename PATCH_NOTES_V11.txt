@@ -1,0 +1,10 @@
+SCAG V11 - Resumable long-VOD downloads + Streamlit progress UI
+
+1. Highest-quality MP4-compatible video/audio selection is preserved.
+2. yt-dlp now uses continued downloads and keeps .part files.
+3. Increased HTTP/fragment retries and socket timeout for 3-5 hour VODs.
+4. Added compact download progress messages with percentage, downloaded/total,
+   speed and ETA.
+5. Streamlit now renders a real progress bar instead of one UI line per
+   percentage update, while keeping detailed logs inside an expander.
+6. Existing partial .part files can be resumed by yt-dlp instead of restarting.

@@ -1,0 +1,12 @@
+SCAG V17 - Qwen3-ASR + Shorts Queue + 16:9 Longform
+
+1. Replaced default Whisper transcription with local Qwen3-ASR-1.7B.
+2. Uses Qwen3-ForcedAligner-0.6B for word-level timestamps.
+3. 180s checkpoints keep multi-hour VOD transcription resumable.
+4. ASR and aligner are explicitly unloaded before Qwen-VL starts to free VRAM.
+5. Whisper remains available as backend: whisper.
+6. Qwen editorial output is now a Shorts QUEUE; the text-stage shortlist is used as a fallback if Qwen-VL returns too few clips.
+7. render_top default is 30, candidate threshold 65.
+8. Long-form is now native 1920x1080 16:9 and uses all approved clips when max_clips=0, ordered chronologically.
+9. Long-form clips are rendered landscape, not the 9:16 Shorts composition.
+10. Qwen3-ASR requires the qwen-asr package; Qwen recommends Python 3.12. Run scripts/setup_qwen_asr.ps1.

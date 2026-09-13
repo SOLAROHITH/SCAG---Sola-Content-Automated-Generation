@@ -1,0 +1,35 @@
+SCAG v6 patch notes
+
+1. Smarter microphone/audio selection
+- `transcription.audio_stream: auto` now checks audio stream titles for
+  microphone/voice/commentary labels before falling back to normal Outplayed
+  stream 1.
+- If the recording has only one stereo audio stream, SCAG does not pretend a
+  separate microphone track exists. It uses the mixed recording and exposes
+  `audio_channel: auto|left|right` for cases where the mic is isolated to one
+  channel.
+
+2. Speech-focused ASR preprocessing
+- Whisper audio is converted to mono.
+- Gentle high-pass/low-pass filtering, light denoise and 16 kHz resampling
+  are applied only to the temporary Whisper audio.
+- The final exported video audio is NOT altered by this preprocessing.
+
+3. Better Whisper robustness
+- Slightly stricter hallucination/no-speech thresholds.
+- Gaming-context initial prompt.
+- Empty/invalid ASR segments are removed.
+- Manual runs still force a fresh transcript.
+
+4. Animated captions
+- More balanced 1–2 line grouping.
+- Up to 6 words / 28 characters per beat by default.
+- Slightly faster, cleaner active-word pop.
+- Existing font, colour, outline, shadow and position controls remain in
+  config.yaml.
+
+Important limitation
+- If the source recording contains only one mixed audio stream and game sound
+  is mixed directly into the same signal as the microphone, software cannot
+  perfectly reconstruct the original microphone track. SCAG can improve ASR
+  preprocessing, but a truly isolated mic track must exist in the recording.

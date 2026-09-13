@@ -1,0 +1,79 @@
+{
+  "project": "SCAG",
+  "manual_flow": {
+    "enabled": true,
+    "entrypoints": [
+      "python -m app.cli manual-clip",
+      "streamlit run app/manual_ui.py"
+    ],
+    "source_types": [
+      "local_file",
+      "youtube_url"
+    ],
+    "formats": [
+      "short",
+      "long"
+    ],
+    "shared_pipeline": [
+      "ClipRequest",
+      "Renderer",
+      "FFmpeg",
+      "QC",
+      "OutputManager"
+    ]
+  },
+  "qwen": {
+    "provider": "ollama",
+    "endpoint": "http://127.0.0.1:11434/v1",
+    "default_model": "qwen3.6:latest",
+    "structured_json": true,
+    "full_timestamped_transcript": true,
+    "candidate_list": true,
+    "context_padding_seconds": {
+      "before": 10,
+      "after": 10
+    },
+    "fallback_fake_selection": false
+  },
+  "captions": {
+    "enabled": true,
+    "engine": "Whisper word timestamps + ASS",
+    "animated": true,
+    "normal_color": "white",
+    "highlight_color": "pink",
+    "highlight_effect": "color + animated scale pop",
+    "shorts_default": true,
+    "longform_default": false,
+    "burned_in": true,
+    "grouping": "automatic 1-2 line word groups",
+    "configurable_in": "config.yaml",
+    "transcription_audio": "auto: labelled mic/voice track preferred; Outplayed stream 1 fallback; single stereo track supports auto/left/right channel selection"
+  },
+  "transcription": {
+    "word_timestamps": true,
+    "audio_stream": "auto",
+    "outplayed_preferred_stream": 1,
+    "fallback_stream": 0,
+    "audio_channel": "auto",
+    "speech_preprocessing": true,
+    "vtt_priority": "supplied local VTT -> YouTube English captions -> Qwen3-ASR fallback"
+  },
+  "output_audio": {
+    "outplayed_mix_streams": [
+      0,
+      1
+    ],
+    "single_social_audio_track": true
+  },
+  "automated_pipeline": {
+    "youtube_url_handling": "fixed: original URL is preserved separately from project source directory"
+  },
+  "version": "18.2",
+  "ai_backend": {
+    "provider": "ollama",
+    "model": "qwen3-vl:8b-instruct",
+    "vision": true,
+    "cloud_cost": "none"
+  },
+  "description": "SCAG V18.2 - VTT-first transcription; every identified candidate can become a Short; all candidates feed 16:9 longform"
+}
